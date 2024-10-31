@@ -1,0 +1,45 @@
+/* Tablet Devices */
+@media screen and (min-width: 760px) {
+
+  nav button{
+    display: block;
+    border: var(--color_accent) solid .0625rem;
+    background-color: transparent;
+    padding: .8rem 1.25rem;
+    color: var(--color_accent);
+  }
+
+  nav section.desktop-links a{
+    display: block;
+    text-decoration: none;
+  }
+
+  nav section.side-bar{
+    display: none;
+  }
+
+  nav button.hamburger-btn{
+    display: none;
+  }
+}
+
+/* Laptops or larger desktop */
+@media screen and (min-width: 1200px) {
+
+  /* Home Image Background Active */
+  header img.active{
+    position: absolute;
+    top: 50%;
+    left: 27%;
+    transform: translate(-50%, -50%);
+    width: 55vw;
+    height:100vh;
+    border-radius: .625rem;
+  }
+
+  button.back-home.available{
+    top: 2%;
+    left: 45%;
+  }
+  
+}

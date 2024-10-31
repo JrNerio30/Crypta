@@ -1,0 +1,31 @@
+/* Global font colors */
+h1, h2, p, a, button, input{
+  color: var(--color_white);
+}
+
+nav section a,
+nav button{
+  display: none;
+}
+
+button{
+  cursor: pointer;
+}
+
+header h1, p{
+  margin-inline: 1.25rem;
+  text-align: center;
+}
+
+header h1, p, button{
+  z-index: 1;
+}
+
+header h1.removed, 
+p.removed, 
+button.removed{
+  display: none;
+}
+
+
+

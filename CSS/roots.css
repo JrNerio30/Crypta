@@ -1,0 +1,14 @@
+/* ROOTS CSS */
+:root{
+  /* Background Color */
+  --bg-color: #000;
+
+  /* Website Colors */
+  --color_dark: #0a1912;
+  --color_white: #ffffff;
+  --color_accent: #f95919;
+
+  /* Color Success and Errors */
+  --color_success: #33845B;
+  --color_error: #481906;
+}
