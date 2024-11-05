@@ -16,18 +16,29 @@ const thirdFormOptionsId = [
   annualIncome.id,
 ];
 
+
+
 function checkInputs(inputs) {
   let allFilled = true;
 
   inputs.forEach((input) => {
     // Check if input is empty
     if (
-      (input.value.trim()) === "" ||
+      (input.value.trim() === "") ||
       (input.id === "province" && input.value === "Province") ||
       (thirdFormOptionsId.includes(input.id) && input.value === "firstOption")
     ) {
       input.classList.add("not-valid");
       allFilled = false;
+    } else if (input.hasAttribute("pattern")) {
+      // Check if input value matches pattern
+      const pattern = new RegExp(input.getAttribute("pattern"));
+      if (!pattern.test(input.value)) {
+        input.classList.add("not-valid");
+        allFilled = false;
+      } else {
+        input.classList.remove("not-valid");
+      }
     } else {
       input.classList.remove("not-valid");
     }
@@ -88,14 +99,6 @@ backBtn.addEventListener("click", (event) => {
   secondFormSection.classList.add("current");
 });
 
-submitButton.addEventListener('click', (event) => {
-  event.preventDefault();
-
-  if(checkInputs(finalFormInputs)){
-    console.log("Your account has been submitted!");
-  }
-})
-
 doItLater.addEventListener('click', (event) => {
   event.preventDefault()
 
@@ -116,37 +119,64 @@ doItLater.addEventListener('click', (event) => {
 })
 
 
-// If there is something being written on the inputs
+submitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  if(checkInputs(finalFormInputs)){
+    navigationItems.forEach(function (items) {
+      items.classList.remove("removed");
+    });
+  
+    hamburgerBtn.classList.remove("removed");
+  
+    headerHeading.classList.remove('removed');
+  
+    headerBackground.classList.remove('active');
+    mainSection.classList.remove('active');
+
+    headerHeading.innerHTML = `Welcome To Crpyta ${fullNameField.value}`;
+    
+  }
+})
+
 form.addEventListener("input", function () {
-  firstFormInputs.forEach(function (input) {
-    if (input.value) {
-      input.classList.add("valid");
-    } else {
+  // this checks if the input value is empty or if it's just space = " "
+  const validateInput = (input) => {
+    if (input.value.trim() === "") {
       input.classList.remove("valid");
+      return false;
     }
-  });
 
-  secondFormInputs.forEach(function (input) {
-    if (input.value && input.value !== "Province") {
-      input.classList.add("valid");
-    } else {
+    // Check for province and first option specific to different form sections
+    if ((input.id === "province" && input.value === "Province") || 
+        (thirdFormInputs.includes(input) && input.value === "firstOption")) {
       input.classList.remove("valid");
+      return false;
     }
-  });
 
-  thirdFormInputs.forEach(function (input) {
-    if (input.value !== "firstOption") {
-      input.classList.add("valid");
-    } else {
-      input.classList.remove("valid");
+    // If the input has a pattern, validate it
+    if (input.hasAttribute("pattern")) {
+      const pattern = new RegExp(input.getAttribute("pattern"));
+      if (!pattern.test(input.value)) {
+        input.classList.remove("valid");
+        return false;
+      }
     }
-  });
 
-  finalFormInputs.forEach(function (input) {
-    if (input.value) {
-      input.classList.add("valid");
-    } else {
-      input.classList.remove("valid");
-    }
-  });
+    // If all checks pass, add the valid class
+    input.classList.add("valid");
+    return true;
+  };
+
+  // Validate inputs in each form group
+  /* 
+  These three dotted is a spread syntax which 
+  combines all of the inputs within each arrays, 
+  combining them all together and all spread apart
+
+  ex. [fullNameField...etc, phoneNumberField...etc, investmentGoals...etc, finalFormInputs...etc]
+  */ 
+  [...firstFormInputs, ...secondFormInputs, ...thirdFormInputs, ...finalFormInputs].forEach(validateInput);
 });
+
+
