@@ -1,13 +1,4 @@
-*{
-  box-sizing: border-box;
-}
-
-body{
-  font-family: "Montserrat";
-  background-color: var(--bg-color);
-}
-
-nav{
+nav.main-navigation {
   width: 100%;
   top: 0;
   position: fixed;
@@ -16,23 +7,22 @@ nav{
   justify-content: space-between;
   align-items: center;
   z-index: 2;
-  transition: all 300ms;
+  transform: translateY(-10rem);
+  transition: all 900ms;
   padding: 1rem;
 }
 
-nav section{
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+nav.preloader-navigation {
+  transform: translateY(0);
 }
 
-nav section.removed, 
-nav button.removed{
+nav.main-navigation div.desktop-links,
+button.log-in-btn {
   display: none;
 }
 
 /* Navigation Menu Logo "Crypta" */
-nav img.logo{
+nav.main-navigation img.logo {
   width: 6.25rem;
   transition: all 500ms;
 }
@@ -42,25 +32,23 @@ nav img.logo{
   Side Navigation Bar
 \\\\\\\\\\\\\\\\\\\\\\\
 */
-section.side-bar {
-  height: 105vh;
+div.side-bar {
+  height: 100vh;
   position: absolute;
   top: 1%;
   right: 0;
   width: 0%;
   transition: all 800ms;
   border-top: none;
-  backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(1rem) saturate(180%);
   background-color: rgba(17, 25, 40, 0.75);
-  display: flex;
-  align-items: baseline;
 }
 
-section.side-bar.visible {
+div.side-bar.visible {
   width: 50%;
 }
 
-section.side-bar section.side-menu {
+div.side-bar div.side-menu {
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -69,10 +57,19 @@ section.side-bar section.side-menu {
   margin-top: 5rem;
 }
 
- section.side-menu a {
+div.side-menu a {
   color: var(--color_white);
   text-decoration: none;
   display: block;
+  text-wrap: nowrap;
+}
+
+div.side-menu button{
+  color: var(--color_primary);
+  background-color: transparent;
+  border: var(--color_primary) solid .0625rem;
+  font-size: 1rem;
+  padding: .5rem 1rem; 
   text-wrap: nowrap;
 }
 
@@ -81,37 +78,41 @@ section.side-bar section.side-menu {
   Hamburger Menu
 \\\\\\\\\\\\\\\\\\\
 */
-nav button.hamburger-btn{
+nav.main-navigation button.hamburger-btn {
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  margin-bottom: .6rem;
-  gap: .4rem;
+  margin-bottom: 0.6rem;
+  gap: 0.4rem;
   cursor: pointer;
   background-color: transparent;
   border: none;
   z-index: 2;
 }
 
+nav.main-navigation button.hamburger-btn.removed {
+  display: none;
+}
+
 /* Hamburger Menu Lines */
-nav button.hamburger-btn span{
+nav.main-navigation button.hamburger-btn span {
   width: 2rem;
-  height: .1rem;
+  height: 0.1rem;
   background-color: var(--color_white);
   transition: all 300ms;
 }
 
-nav button.hamburger-btn span:nth-child(1).active{
+nav.main-navigation button.hamburger-btn span:nth-child(1).active {
   transform: rotate(30deg);
   transform-origin: left;
 }
 
-nav button.hamburger-btn span:nth-child(2).active{
+nav.main-navigation button.hamburger-btn span:nth-child(2).active {
   transform: scale(0);
 }
 
-nav button.hamburger-btn span:nth-child(3).active{
-  transform: rotate(-33deg);
+nav.main-navigation button.hamburger-btn span:nth-child(3).active {
+  transform: rotate(-30deg);
   transform-origin: left;
 }
 
@@ -122,7 +123,7 @@ nav button.hamburger-btn span:nth-child(3).active{
 */
 
 /* Home */
-header{
+header {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -133,40 +134,26 @@ header{
 }
 
 /* Home Image Background */
-header img{
+header img {
   z-index: 1;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100vw;
+  width: 0vw;
   height: 100vh;
   object-fit: cover;
   transition: all 1s;
   filter: contrast(1.2);
 }
 
-/* Back To Home Button */
-button.back-home{
-  display: none;
-}
-
-button.back-home.available{
-  display: block;
-  backdrop-filter: blur(.625rem) saturate(100%);
-  background-color: rgba(255, 255, 255, 0.29);
-  border-radius: 2.1875rem;
-  border: none;
-  position: absolute;
-  padding: .5rem .8rem;
-  font-size: .9375rem;
-  top: 3.5%;
-  left: 34%;
-  z-index: 2;
+header img.preloader-header-img {
+  width: 100vw;
+  pointer-events: none;
 }
 
 /* Home Header */
-h1{
+header h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   line-height: 120%;
   max-width: 20ch;
@@ -175,7 +162,7 @@ h1{
 }
 
 /* Home Paragraph */
-header p{
+header p {
   font-size: clamp(1rem, 5vw, 1.125rem);
   line-height: 150%;
   max-width: 65ch;
@@ -183,10 +170,326 @@ header p{
 }
 
 /* Home Sign Up Button */
-header button{
-  background-color: var(--color_accent);  
+header button {
+  background-color: var(--color_primary);
   font-size: 1rem;
-  padding: .75rem 1.5rem;
-  border: var(--color_accent) solid .0625rem;
-  z-index: 1;
+  padding: 0.75rem 1.5rem;
+  border: var(--color_primary) solid 0.0625rem;
+  transition: all 400ms;
 }
+
+/* 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  MAIN SECTION / FORM SECTION
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+*/
+
+/* Main Semantic Section */
+main {
+  position: absolute;
+  top: 8%;
+  right: 15%;
+  min-height: 87vh;
+  width: 0vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s;
+  overflow: hidden;
+  opacity: 0;
+  border-radius: 0;
+}
+
+/* Main section when active */
+main.active {
+  width: 70%;
+  opacity: 1;
+}
+
+/* Back To Home Button */
+button.back-home {
+  display: none;
+}
+
+/* When button becomes available */
+button.back-home.available {
+  display: block;
+  background-color: transparent;
+  border: transparent;
+  position: absolute;
+  font-size: .9375rem;
+  top: 2%;
+  left: 1%;
+  z-index: 2;
+}
+
+/* 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  FORM SECTION - FIRST FORM
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+*/
+section.first-form {
+  display: flex;
+}
+
+section.first-form.created {
+  display: none;
+}
+
+/* Heading (2) from the first div wrapper from First Form (Creating an account) */
+section.first-form section.heading-para-wrapper h2 {
+  font-size: clamp(1.8rem, 3.3vw, 4rem);
+}
+
+/* First div wrapper from main --> the "Log In" link color */
+section.first-form a {
+  color: var(--color_primary);
+  text-wrap: nowrap;
+}
+
+/* A div within the first section form to align checkbox and the terms and condition paragraph and link */
+fieldset.terms-condition-wrapper {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  position: relative;
+}
+
+/* First form section --> inputs[checkbox] */
+form section.first-form input[type="checkbox"] {
+  cursor: pointer;
+}
+
+fieldset.terms-condition-wrapper label {
+  font-weight: 400; 
+}
+
+/* Terms and Conditions if not checked */
+p#agreeToTerms {
+  font-size: 0.6625rem;
+  color: var(--color_error);
+  position: absolute;
+  top: 180%;
+  left: 1%;
+}
+
+/* Create Account Button */
+form button.create-account {
+  background-color: var(--color_primary);
+  font-weight: 600;
+  border: transparent;
+  padding-block: 0.875rem;
+  border-radius: 0.625rem;
+  margin-top: 2rem;
+}
+
+/* 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  ADDITIONAL FORM SECTION - SECOND FORM
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+*/
+form section.second-form {
+  display: none;
+}
+
+form section.second-form.current {
+  display: flex;
+}
+
+span.location-wrapper {
+  display: flex;
+  gap: .625rem;
+}
+
+span.location-wrapper input[type="text"] {
+  width: 8.125rem;
+}
+
+span.location-wrapper select {
+  width: 7.89rem;
+  color: var(--color_grey);
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="grey"%3E%3Cpath d="M7 10l5 5 5-5z"/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 1.25rem;
+}
+
+span.date-birth-wrapper {
+  display: flex;
+  gap: .625rem;
+  margin-bottom: 3.0625rem;
+}
+
+span.date-birth-wrapper input[type="text"] {
+  width: 4.375rem;
+}
+
+span.date-birth-wrapper input[type="text"]:nth-child(3) {
+  width: 6.375rem;
+}
+
+nav.second-form-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 3.125rem;
+}
+
+section.second-form ul.progress-indicators-wrapper li:nth-child(1) {
+  background-color: var(--color_primary);
+}
+
+/* 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  ADDITIONAL FORM SECTION - THIRD FORM
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+*/
+section.third-form {
+  display: none;
+}
+
+section.third-form.current {
+  display: flex;
+}
+
+section.third-form select {
+  width: 16.875rem;
+  color: var(--color_grey);
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="grey"%3E%3Cpath d="M7 10l5 5 5-5z"/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  background-size: 1.25rem;
+}
+
+span.risk-level-wrapper {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.7rem;
+  justify-content: space-between;
+  margin-bottom: 3.5625rem;
+}
+
+/* Webkit background slider color style*/
+input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #6fea84 0%, #ff763f 50.34%, #fe0404 100%);
+  outline: none;
+}
+
+/* Webkit Slider Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* For range thumb Firefox based web browsers */
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+button.back-btn {
+  background-color: transparent;
+  border: var(--color_primary) solid 0.0625rem;
+  color: var(--color_primary);
+  padding: 0.625rem 1.1875rem;
+  border-radius: 0.625rem;
+  max-height: fit-content;
+}
+
+section.third-form ul.progress-indicators-wrapper li:nth-child(2) {
+  background-color: var(--color_primary);
+}
+
+section.third-form select.not-valid {
+  border: var(--color_error) solid 0.0625rem;
+}
+
+section.third-form select.valid {
+  border: var(--color_success) solid 0.0625rem;
+}
+
+/* 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  ADDITIONAL FORM SECTION - FINAL FORM
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+*/
+section.final-form {
+  display: none;
+}
+
+section.card-options h3{
+  color: var(--color_white);
+  font-weight: 500;
+  margin-bottom: .625rem;  
+}
+
+section.final-form.current{
+  display: flex;
+}
+
+section.final-form input{
+  width: 18.125rem;
+}
+
+span.payment-method-wrapper{
+  display: flex;
+  gap: .25rem;
+}
+
+span.payment-method-wrapper .fa-cc-mastercard, .fa-cc-visa{
+  font-size: 2.5rem;
+  color: var(--color_success);
+}
+
+span.date-cvv-wrapper input{
+  width: 8.75rem;
+}
+
+span.date-cvv-wrapper{
+  display: flex;
+  gap: .625rem;
+  margin-bottom: 3.125rem;
+}
+
+button.do-it-later{
+  background-color: transparent;
+  color: var(--color_primary);
+  border: transparent;
+  padding: .375rem .9375rem;
+  font-size: .75rem;
+  font-weight: 600; 
+}
+
+button.submit-button{
+  padding: .375rem .9375rem; 
+  background-color: var(--color_primary);
+  border: var(--color_primary) solid .0625rem;
+  border-radius: .625rem;
+  font-size: .75rem;
+  font-weight: 600; 
+}
+
+section.final-form ul.progress-indicators-wrapper li:nth-child(3){
+  background-color: var(--color_primary);
+}
+
+
