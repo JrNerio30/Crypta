@@ -1,45 +1,114 @@
 /* Tablet Devices */
 @media screen and (min-width: 760px) {
-
-  nav button{
-    display: block;
-    border: var(--color_accent) solid .0625rem;
-    background-color: transparent;
-    padding: .8rem 1.25rem;
-    color: var(--color_accent);
+  nav.main-navigation div.desktop-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
   }
 
-  nav section.desktop-links a{
+  nav.main-navigation button.log-in-btn {
     display: block;
+  }
+
+  nav.main-navigation div.desktop-links a {
     text-decoration: none;
   }
 
-  nav section.side-bar{
+  nav.main-navigation div.desktop-links.removed,
+  nav.main-navigation button.log-in-btn.removed {
     display: none;
   }
 
-  nav button.hamburger-btn{
+  /* Log In Button */
+  nav.main-navigation button {
+    display: block;
+    border: var(--color_primary) solid 0.0625rem;
+    background-color: transparent;
+    padding: 0.8rem 1.25rem;
+    color: var(--color_primary);
+  }
+
+  nav.main-navigation div.side-bar {
     display: none;
+  }
+
+  nav.main-navigation button.hamburger-btn {
+    display: none;
+  }
+
+  form section.first-form input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 33vw;
   }
 }
 
 /* Laptops or larger desktop */
 @media screen and (min-width: 1200px) {
-
   /* Home Image Background Active */
-  header img.active{
+  header img.active {
     position: absolute;
     top: 50%;
     left: 27%;
     transform: translate(-50%, -50%);
     width: 55vw;
-    height:100vh;
-    border-radius: .625rem;
+    height: 100vh;
+    border-radius: 0.625rem;
   }
 
-  button.back-home.available{
-    top: 2%;
-    left: 45%;
+  main {
+    right: 1%;
   }
-  
+
+  main.active {
+    right: 0%;
+    top: 0%;
+    height: 100vh;
+    width: 44vw;
+  }
+}
+
+/* MEDIA QUERIES MAX WIDTH */
+
+/* Small Phones */
+@media screen and (max-height: 700px) {
+
+  section.heading-para-wrapper{
+    margin-bottom: .9375rem;
+  }
+
+  span.date-birth-wrapper,
+  span.risk-level-wrapper,
+  span.date-cvv-wrapper{
+    margin-bottom: .625rem;
+  }
+
+  nav.second-form-button,
+  nav.third-form-buttons,
+  nav.final-form-buttons{
+    margin-bottom: .625rem;
+  }
+
+  main{
+    padding-block: 2rem 1rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  main.active {
+    width: 100%;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  header img.active {
+    width: 150vw;
+  }
+
+  main {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    z-index: 2;
+  }
 }
