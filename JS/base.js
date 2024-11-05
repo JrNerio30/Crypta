@@ -1,61 +1,93 @@
-const navigationMenu = document.querySelector('nav')
+/*\\\\\\\\\\\\\\\\\\\\
+    ITEMS / ARRAYS
+\\\\\\\\\\\\\\\\\\\\*/
 const headerItems = [headerHeading, headerPara, signUpBtn];
-const navLinks = document.querySelector('nav > section');
-const navigationItems = [navLinks, logInBtn];
-const hamburgerBtn = document.querySelector('.hamburger-btn');
-const hamburgerLines = document.querySelectorAll('button.hamburger-btn > span');
-const sideBar = document.querySelector(".side-bar");
-const sideMenuLinks = document.querySelectorAll('section.side-menu > a');
+const navigationItems = [desktopLinks, logInBtn];
+const hamburgerLines = document.querySelectorAll("button.hamburger-btn > span");
+const sideMenuLinks = document.querySelectorAll("div.side-menu > a");
 
-// Minimizes the header image background when sign up btn is click
-// Also removes the items when sign up btn is click
-signUpBtn.addEventListener('click', function() {
+/* \\\\\\\\\\\\\\\\\\\\
+      PRELOADER
+\\\\\\\\\\\\\\\\\\\\*/
+window.addEventListener("load", function () {
+  // Expands the background image on load
+  headerBackground.classList.add("preloader-header-img");
 
-  headerBackground.classList.add('active');
-
-  headerItems.forEach(function(items){
-    items.classList.add('removed');
-  })
-
-  backHomeBtn.classList.add('available');
-  
-  navigationItems.forEach(function(items) {
-    items.classList.add('removed');
-  });
-})
-
-// When clicking on back to home button
-backHomeBtn.addEventListener('click', function() {
-  headerBackground.classList.remove('active');
-
-  headerItems.forEach(function(items){
-    items.classList.remove('removed');
+  // Fades In and slides from bottom on load [header heading, paragraph and button]
+  headerItems.forEach(function (preload) {
+    preload.classList.add("preloader-header-items");
   });
 
-  backHomeBtn.classList.remove('available');
+  // Navigation menu slides from top on load
+  navigationMenu.classList.add("preloader-navigation");
+});
 
-  navigationItems.forEach(function(items) {
-    items.classList.remove('removed');
+/* 
+  Minimizes the header image background when sign up btn is click
+  Also removes the items when sign up btn is click 
+*/
+signUpBtn.addEventListener("click", function () {
+  // The links and the button only in navigation menu
+  navigationItems.forEach(function (items) {
+    items.classList.add("removed");
   });
+
+  hamburgerBtn.classList.add("removed");
+
+  // Header Image Background
+  headerBackground.classList.add("active");
+
+  // All of the items within the header section [h1, p, button]
+  headerItems.forEach(function (items) {
+    items.classList.add("removed");
+  });
+
+  // The "X" logo appears that can be use to go back to home page
+  backHomeBtn.classList.add("available");
+
+  // Main Section/The form appears from the right
+  mainSection.classList.add("active");
+});
+
+/* 
+  When clicking on the "X" icon(back to home), 
+  all of the class names(active, removed, available,) 
+  will be removed and everything will go back to normal 
+*/
+backHomeBtn.addEventListener("click", function () {
+  navigationItems.forEach(function (items) {
+    items.classList.remove("removed");
+  });
+
+  hamburgerBtn.classList.remove("removed");
+
+  headerBackground.classList.remove("active");
+
+  headerItems.forEach(function (items) {
+    items.classList.remove("removed");
+  });
+
+  backHomeBtn.classList.remove("available");
+
+  mainSection.classList.remove("active");
 });
 
 // When clicking on the hamburger menu
 hamburgerBtn.addEventListener("click", function () {
+  // A side bar or menu appears from the right
   sideBar.classList.toggle("visible");
 });
 
-// When clicking on the hamburger menu, it change to an X to indicate an exit
-hamburgerBtn.addEventListener('click', function() {
-  hamburgerLines.forEach(function(activate){
-    activate.classList.toggle('active');
+// When clicking on the hamburger menu, it changes to an X icon to indicate an exit out of the side menu
+hamburgerBtn.addEventListener("click", function () {
+  hamburgerLines.forEach(function (activate) {
+    activate.classList.toggle("active");
   });
 });
 
 // When clicking on the links within the side bar, the side bar gets remove
-sideMenuLinks.forEach(function(sideLinks) {
-  sideLinks.addEventListener('click', function() {
-    sideBar.classList.remove('visible');
-  })
-})
-
-
+sideMenuLinks.forEach(function (sideLinks) {
+  sideLinks.addEventListener("click", function () {
+    sideBar.classList.remove("visible");
+  });
+});
