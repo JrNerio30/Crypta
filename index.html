@@ -79,7 +79,7 @@
         <fieldset class="form-group">
           <legend class="visually-hidden">Email</legend>
           <label for="emailField">Email *</label>
-          <input type="email" id="emailField" name="email" placeholder="Your email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email format (e.g., user@example.com)" autocomplete="off" required>
+          <input type="email" id="emailField" name="email" placeholder="youremail@address.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email format (e.g., user@example.com)" autocomplete="off">
         </fieldset>
       
         <fieldset class="form-group">
@@ -273,10 +273,10 @@
         <fieldset class="form-group">
           <legend class="visually-hidden">Card Number</legend>   
           <label for="cardNumber">Card Number *</label>
-          <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required pattern="\d{4} \d{4} \d{4} \d{4}" autocomplete="off">
+          <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="16" required pattern="\d{4}\d{4}\d{4}\d{4}" autocomplete="off">
           <span class="date-cvv-wrapper">
             <label for="expiryDate" class="screen-reader-only">Expiry Date</label>
-            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="5" required pattern="\d{2}/\d{2}" autocomplete="off">
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" maxlength="4" required pattern="\d{2}\d{2}" autocomplete="off">
             <label for="cvv" class="screen-reader-only">CVV</label>
             <input type="text" id="cvv" name="cvv" placeholder="CVV" maxlength="3" required pattern="\d{3}" autocomplete="off">
           </span>
