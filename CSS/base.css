@@ -327,7 +327,7 @@ span.date-birth-wrapper input[type="text"] {
   width: 4.375rem;
 }
 
-span.date-birth-wrapper input[type="text"]:nth-child(3) {
+span.date-birth-wrapper input[type="text"]:nth-child(5) {
   width: 6.375rem;
 }
 
